@@ -27,7 +27,7 @@ export function Hero() {
             <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-6xl">
               Xavier Moisés Alberto José
             </h1>
-            <p className="max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-300 sm:text-lg">
+            <p className="max-w-2xl text-base leading-7 text-slate-400 dark:text-slate-300 sm:text-lg">
               Full Stack Developer especializado em aplicações escaláveis
               modular e modernas.
               <br />
