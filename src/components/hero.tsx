@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Magnet from "./Magnet";
 
 export function Hero() {
   return (
@@ -18,28 +19,34 @@ export function Hero() {
         className="space-y-6"
       >
         <Badge tone="accent" className="shadow-sm">
-          Next.js 16.2.4 + Tailwind + Biome
+          DEVELOPER FULLSTACK
         </Badge>
 
-        <div className="flex flex-col items-start gap-6 md:flex-row md:items-center">
+        <div className="flex flex-col items-start gap-56 md:flex-row md:items-center">
           <div className="max-w-3xl space-y-4">
             <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-6xl">
-              Um portfolio moderno, rápido e pronto para crescer.
+              Xavier Moisés Alberto José
             </h1>
             <p className="max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-300 sm:text-lg">
-              Projeto preparado com `src/`, App Router, Tailwind,
-              `tailwind-merge`, `tailwind-variants`, shadcn/ui, Framer Motion e
-              Biome para um fluxo de trabalho limpo.
+              Full Stack Developer especializado em aplicações escaláveis
+              modular e modernas.
+              <br />
+              Desenvolvo sistemas completos — do frontend ao backend — seja
+              Mobiler, Web, Desktop, incluindo arquitetura, APIs e deploy com
+              Docker e CI/CD Foco em performance, organização e soluções reais
+              para problemas reais. Desenvolvedor
             </p>
           </div>
           <div className="border border-gray-200/20 p-6 mt-8">
-            <Image
-              src="/imagens/me.png"
-              alt="Imagem de um laptop com código e gráficos, representando um portfolio moderno."
-              width={600}
-              height={600}
-              className="rounded-lg border border-border object-cover shadow-sm"
-            />
+            <Magnet padding={50} disabled={false} magnetStrength={50}>
+              <Image
+                src="/imagens/me.png"
+                alt="Imagem de um laptop com código e gráficos, representando um portfolio moderno."
+                width={600}
+                height={600}
+                className="rounded-lg border border-border object-cover shadow-sm"
+              />
+            </Magnet>
           </div>
         </div>
 
@@ -64,7 +71,7 @@ export function Hero() {
           </Button>
         </div>
       </motion.div>
-
+      {/* 
       <motion.section
         id="projetos"
         initial={{ opacity: 0, y: 18 }}
@@ -87,7 +94,7 @@ export function Hero() {
             </p>
           </article>
         ))}
-      </motion.section>
+      </motion.section> */}
     </div>
   );
 }
