@@ -1,23 +1,25 @@
 "use client";
 
+import { FeatureCard } from "@/components/blocks/grid-feature-cards";
 import { Navigation } from "@/components/landing/navigation";
 import ShapeGrid from "@/components/ShapeGrid";
-import { RepoCard } from "@/features/projects/components/RepoCard";
 import { useRepos } from "@/features/projects/hooks/useGitHub";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function ProjectsPage() {
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
+  const searchTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Debounce simples sem lib externa
   const handleSearch = (val: string) => {
     setSearch(val);
-    clearTimeout((window as any).__searchTimeout);
-    (window as any).__searchTimeout = setTimeout(
-      () => setDebouncedSearch(val),
-      400,
-    );
+
+    if (searchTimeoutRef.current) {
+      clearTimeout(searchTimeoutRef.current);
+    }
+
+    searchTimeoutRef.current = setTimeout(() => setDebouncedSearch(val), 400);
   };
 
   const { repos, loading, error } = useRepos(debouncedSearch);
@@ -41,14 +43,7 @@ export default function ProjectsPage() {
 
       {/* Header */}
       <div className="px-6 pt-20 pb-12 max-w-275 mx-auto text-center">
-        <h1
-          className="
-          text-[clamp(32px,5vw,56px)]
-          font-extrabold
-          mb-4
-          tracking-tight
-        "
-        >
+        <h1 className="text-[clamp(32px,5vw,56px)] font-extrabold mb-4 tracking-tight">
           Projectos
         </h1>
 
@@ -91,10 +86,10 @@ export default function ProjectsPage() {
 
         {loading ? (
           <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-5">
-            {Array.from({ length: 6 }).map((_, i) => (
+            {Array.from({ length: 6 }, (_, i) => `skeleton-${i}`).map((key) => (
               <div
-                key={i}
-                className="h-[320px] bg-[#0d1117] border border-[#21262d] rounded-2xl animate-pulse"
+                key={key}
+                className="h-80 bg-[#191c205e] border border-[#21262d] animate-pulse"
               />
             ))}
           </div>
@@ -112,7 +107,7 @@ export default function ProjectsPage() {
 
             <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-5">
               {repos.map((repo) => (
-                <RepoCard key={repo.id} repo={repo} />
+                <FeatureCard key={repo.id} repo={repo} />
               ))}
             </div>
           </>
