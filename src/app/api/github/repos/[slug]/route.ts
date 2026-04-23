@@ -12,11 +12,26 @@ function decodeBase64(content: string): string {
   return Buffer.from(content, "base64").toString("utf-8");
 }
 
+function getErrorMessage(error: unknown): string {
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  if (typeof error === "object" && error !== null && "message" in error) {
+    const message = (error as { message?: unknown }).message;
+    if (typeof message === "string") {
+      return message;
+    }
+  }
+
+  return "Unknown error";
+}
+
 export async function GET(
   _req: Request,
-  { params }: { params: { slug: string } },
+  { params }: { params: Promise<{ slug: string }> },
 ) {
-  const repoName = params.slug;
+  const { slug: repoName } = await params;
 
   try {
     // 1. Info base do repo
@@ -53,11 +68,16 @@ export async function GET(
       });
 
       if (Array.isArray(dotXContents)) {
-        dotXAssets = dotXContents
-          .filter(
-            (f) => f.type === "file" && "download_url" in f && f.download_url,
-          )
-          .map((f) => {
+        type DotXContent = (typeof dotXContents)[number];
+
+        const previewFiles = dotXContents.filter(
+          (
+            f,
+          ): f is DotXContent & { type: "file"; download_url: string } =>
+            f.type === "file" && typeof f.download_url === "string",
+        );
+
+        dotXAssets = previewFiles.map((f) => {
             const name = f.name.toLowerCase();
             let type: "cover" | "gif" | "screenshot" | "other" = "other";
 
@@ -69,13 +89,15 @@ export async function GET(
             return {
               name: f.name,
               type,
-              url: (f as any).download_url as string,
+              url: f.download_url,
             };
-          });
+        });
       }
     } catch {
       // Pasta .preview não existe — tá fixe, segue em frente
-      console.warn(`Repo ${repo.name} não tem pasta .preview ou deu pau ao acessar.`);
+      console.warn(
+        `Repo ${repo.name} não tem pasta .preview ou deu pau ao acessar.`,
+      );
     }
 
     // Ordena: cover primeiro, depois gifs, depois o resto
@@ -104,16 +126,16 @@ export async function GET(
       readme: readmeContent,
       assets: dotXAssets,
     });
-  } catch (error: any) {
-    if (error.status === 404) {
+  } catch (error: unknown) {
+    if (typeof error === "object" && error !== null && "status" in error && (error as { status?: unknown }).status === 404) {
       return NextResponse.json(
         { error: "Repo não encontrado" },
         { status: 404 },
       );
     }
-    console.error("[GitHub API] Deu pau no repo", repoName, error.message);
+    console.error("[GitHub API] Deu pau no repo", repoName, getErrorMessage(error));
     return NextResponse.json(
-      { error: "Erro a buscar detalhes", detail: error.message },
+      { error: "Erro a buscar detalhes", detail: getErrorMessage(error) },
       { status: 500 },
     );
   }

@@ -1,5 +1,11 @@
-'use client';
-import React, { useState, useEffect, useRef, ReactNode, HTMLAttributes } from 'react';
+"use client";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  ReactNode,
+  HTMLAttributes,
+} from "react";
 
 interface MagnetProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
@@ -17,14 +23,17 @@ const Magnet: React.FC<MagnetProps> = ({
   padding = 100,
   disabled = false,
   magnetStrength = 2,
-  activeTransition = 'transform 0.3s ease-out',
-  inactiveTransition = 'transform 0.5s ease-in-out',
-  wrapperClassName = '',
-  innerClassName = '',
+  activeTransition = "transform 0.3s ease-out",
+  inactiveTransition = "transform 0.5s ease-in-out",
+  wrapperClassName = "",
+  innerClassName = "",
   ...props
 }) => {
   const [isActive, setIsActive] = useState<boolean>(false);
-  const [position, setPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [position, setPosition] = useState<{ x: number; y: number }>({
+    x: 0,
+    y: 0,
+  });
   const magnetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -36,7 +45,8 @@ const Magnet: React.FC<MagnetProps> = ({
     const handleMouseMove = (e: MouseEvent) => {
       if (!magnetRef.current) return;
 
-      const { left, top, width, height } = magnetRef.current.getBoundingClientRect();
+      const { left, top, width, height } =
+        magnetRef.current.getBoundingClientRect();
       const centerX = left + width / 2;
       const centerY = top + height / 2;
 
@@ -54,9 +64,9 @@ const Magnet: React.FC<MagnetProps> = ({
       }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener("mousemove", handleMouseMove);
     };
   }, [padding, disabled, magnetStrength]);
 
@@ -66,7 +76,7 @@ const Magnet: React.FC<MagnetProps> = ({
     <div
       ref={magnetRef}
       className={wrapperClassName}
-      style={{ position: 'relative', display: 'inline-block' }}
+      style={{ position: "relative", display: "inline-block" }}
       {...props}
     >
       <div
@@ -74,7 +84,7 @@ const Magnet: React.FC<MagnetProps> = ({
         style={{
           transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
           transition: transitionStyle,
-          willChange: 'transform'
+          willChange: "transform",
         }}
       >
         {children}

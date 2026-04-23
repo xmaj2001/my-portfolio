@@ -2,10 +2,8 @@
 
 import { Navigation } from "@/components/landing/navigation";
 import ShapeGrid from "@/components/ShapeGrid";
-import DomeGallery from "@/features/projects/components/DomeGallery";
 import { RepoCard } from "@/features/projects/components/RepoCard";
 import { useRepos } from "@/features/projects/hooks/useGitHub";
-import { Repo } from "@/features/projects/type";
 import { useState } from "react";
 
 export default function ProjectsPage() {
@@ -26,7 +24,7 @@ export default function ProjectsPage() {
   return (
     <main className="relative h-screen w-screen overflow-x-hidden dark:text-slate-50 light:text-red-500">
       <Navigation />
-      <div className="fixed inset-0 z-0">
+      <div className="fixed inset-0 -z-20">
         <ShapeGrid
           speed={0.5}
           squareSize={40}

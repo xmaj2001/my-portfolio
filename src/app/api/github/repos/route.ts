@@ -17,7 +17,7 @@ export async function GET(req: Request) {
       username: GITHUB_USERNAME,
       sort: "updated",
       per_page: 100,
-      type: 'all' // só repos públicos — muda para "all" se quiseres privados
+      type: "all", // só repos públicos — muda para "all" se quiseres privados
     });
 
     // Para cada repo, tenta buscar a capa da pasta .preview (se existir) e outras infos
@@ -44,14 +44,16 @@ export async function GET(req: Request) {
                 f.name,
               ),
             );
-            
+
             if (coverFile && "download_url" in coverFile) {
               coverUrl = coverFile.download_url;
             }
           }
         } catch {
           // Pasta .preview não existe neste repo — normal, não é pau
-          console.warn(`Repo ${repo.name} não tem pasta .preview ou deu pau ao acessar.`);
+          console.warn(
+            `Repo ${repo.name} não tem pasta .preview ou deu pau ao acessar.`,
+          );
         }
 
         return {
