@@ -11,7 +11,7 @@ import Magnet from "./Magnet";
 
 export function Hero() {
   return (
-    <div className="mx-auto flex min-h-[80vh] max-w-5xl flex-col justify-center gap-10">
+    <div className="mx-auto flex h-screen max-w-5xl flex-col justify-center gap-10">
       <motion.div
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}

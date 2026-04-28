@@ -1,11 +1,12 @@
 import { Hero } from "@/components/hero";
 import { Navigation } from "@/components/landing/navigation";
 import ShapeGrid from "@/components/ShapeGrid";
+import { Experience } from "@/modules/about/components/experience";
 
 export default function Home() {
   return (
     <main className="min-h-screen dark:text-slate-50 light:text-red-500">
-      <div className="h-screen w-screen absolute top-0 left-0 -z-10">
+      <div className="fixed inset-0 -z-20">
         <ShapeGrid
           speed={0.5}
           squareSize={40}
@@ -17,7 +18,15 @@ export default function Home() {
         />
       </div>
       <Navigation />
-      <Hero />
+      <div className="flex flex-col gap-10">
+        <Hero />
+        <div className="space-y-8">
+          <h2 className="text-3xl font-bold tracking-tight text-center">
+            Experiência
+          </h2>
+          <Experience />
+        </div>
+      </div>
     </main>
   );
 }

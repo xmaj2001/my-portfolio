@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { Navigation } from "@/components/landing/navigation";
 import ShapeGrid from "@/components/ShapeGrid";
-import { useRepoDetail } from "@/features/projects/hooks/useGitHub";
-import { RepoHeader } from "@/components/projects/RepoHeader";
-import { RepoGallery } from "@/components/projects/RepoGallery";
-import { RepoReadme } from "@/components/projects/RepoReadme";
+import { useRepoDetail } from "@/modules/repository/hooks/useGitHub";
+import { RepoHeader } from "@/components/repository/RepoHeader";
+import { RepoGallery } from "@/components/repository/RepoGallery";
+import { RepoReadme } from "@/components/repository/RepoReadme";
 
 // ─── Background ──────────────────────────────────────────────────────────────
 
@@ -56,10 +56,10 @@ function ErrorState({ message }: { message: string }) {
           <div className="mb-3 text-4xl">⚠️</div>
           <p className="text-[#f85149]">Deu pau: {message}</p>
           <Link
-            href="/projects"
+            href="/repository"
             className="mt-4 inline-block text-sm text-[#58a6ff] hover:underline"
           >
-            ← Voltar aos projectos
+            ← Voltar aos repositories
           </Link>
         </div>
       </section>
@@ -89,10 +89,10 @@ export default function ProjectDetailPage() {
 
       <div className="mx-auto max-w-5xl space-y-8 px-6 pt-24 pb-20">
         <Link
-          href="/projects"
+          href="/repository"
           className="inline-block text-sm text-[#58a6ff] hover:underline"
         >
-          ← Voltar aos projectos
+          ← Voltar aos repositories
         </Link>
 
         <RepoHeader repo={repo} cover={cover} />

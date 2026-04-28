@@ -3,10 +3,10 @@
 import { FeatureCard } from "@/components/blocks/grid-feature-cards";
 import { Navigation } from "@/components/landing/navigation";
 import ShapeGrid from "@/components/ShapeGrid";
-import { useRepos } from "@/features/projects/hooks/useGitHub";
+import { useRepos } from "@/modules/repository/hooks/useGitHub";
 import { useRef, useState } from "react";
 
-export default function ProjectsPage() {
+export default function RepositoryPage() {
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const searchTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -44,7 +44,7 @@ export default function ProjectsPage() {
       {/* Header */}
       <div className="px-6 pt-20 pb-12 max-w-275 mx-auto text-center">
         <h1 className="text-[clamp(32px,5vw,56px)] font-extrabold mb-4 tracking-tight">
-          Projectos
+          Repositórios
         </h1>
 
         <p className="text-[#8b949e] text-base mb-10">

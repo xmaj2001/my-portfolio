@@ -3,7 +3,7 @@ import { LANG_COLORS, Repo } from "../type";
 
 export function RepoCardx({ repo }: { repo: Repo }) {
   return (
-    <Link href={`/projects/${repo.name}`} className="no-underline">
+    <Link href={`/repository/${repo.name}`} className="no-underline">
       <article
         className="
           bg-[#0d1117]
@@ -132,7 +132,7 @@ export function RepoCardx({ repo }: { repo: Repo }) {
 
 export function RepoCard({ repo }: { repo: Repo }) {
   return (
-    <Link href={`/projects/${repo.name}`} className="no-underline">
+    <Link href={`/repository/${repo.name}`} className="no-underline">
       <div className="border border-gray-200/20 p-4">
         <div className="bg-zinc-800">
           {/* Capa */}

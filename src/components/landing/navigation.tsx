@@ -6,7 +6,7 @@ import { Github, Menu, X } from "lucide-react";
 
 const navLinks = [
   { name: "About", href: "/about" },
-  { name: "Projects", href: "/projects" },
+  { name: "Repositories", href: "/repository" },
   { name: "Events", href: "/events" },
   { name: "Skills", href: "/skills" },
   { name: "Contact", href: "/contact" },
@@ -43,7 +43,7 @@ export function Navigation() {
           }`}
         >
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
+          <a href="/" className="flex items-center gap-2 group">
             <span
               className={`font-display tracking-tight transition-all duration-500 ${isScrolled ? "text-xl text-foreground" : "text-2xl text-white"}`}
             >
@@ -75,7 +75,7 @@ export function Navigation() {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
             <a
-              href="#"
+              href="https://github.com/xmaj2001"
               className={`flex items-center gap-2 transition-all duration-500 ${isScrolled ? "text-xs text-foreground/70 hover:text-foreground" : "text-sm text-white/70 hover:text-white"}`}
             >
               <span>Github</span> <Github />

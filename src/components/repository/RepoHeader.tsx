@@ -1,6 +1,6 @@
 "use client";
 
-import { LANG_COLORS } from "@/features/projects/type";
+import { LANG_COLORS } from "@/modules/repository/type";
 
 type Repo = {
   name: string;
