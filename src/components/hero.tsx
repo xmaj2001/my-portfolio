@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Github, Mail } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
@@ -20,20 +20,20 @@ export function Hero() {
       >
         <div className="flex flex-col items-start gap-40 md:flex-row md:items-center">
           <div className="max-w-3xl space-y-4">
-            <Badge tone="accent" className="shadow-sm">
-              DEVELOPER FULLSTACK
-            </Badge>
+            <Badge className="shadow-sm">FULL STACK DEVELOPER</Badge>
             <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-4xl">
               Xavier Moisés Alberto José
             </h1>
             <p className="max-w-5xl text-base leading-7 text-gray-300 dark:text-slate-300 sm:text-lg">
-              Full Stack Developer especializado em aplicações escaláveis
-              modular e modernas. Desenvolvo sistemas completos — do frontend ao
-              backend — seja Mobiler, Web, Desktop, incluindo arquitetura, APIs
-              e deploy com Docker e CI/CD,NGNIX, LoadBlancer.
+              <b>Full Stack Developer</b> Mobile · Web · Desktop ·
+              Infraestrutura
               <br />
-              Foco em performance, organização e soluções reais para problemas
-              reais. Desenvolvedor
+              <br />
+              Desenvolvo sistemas completos do frontend ao backend — em
+              plataformas Mobile, Web e Desktop. Especializado em arquiteturas
+              escaláveis e modulares, com foco em performance real, organização
+              sólida e soluções que funcionam em produção. Da interface ao
+              servidor, passando por APIs, deploys e infraestrutura.
             </p>
 
             <div className="flex flex-col gap-3 sm:flex-row">
@@ -70,33 +70,37 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Destaques SKILLS */}
+        {/* Destaques especialidades */}
 
         <motion.section
-          id="destaques_skills"
+          id="destaques_especialidades"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-          className="grid gap-4 md:grid-cols-3"
+          className="grid gap-4 md:grid-cols-4"
         >
           {[
             [
-              "Dev Web",
-              "Desenvolvimento de aplicações Web usando tecnologias como PhP, Node.js, React, Next.js, Angular(estudando), HTML5, CSS3, JavaScript/TypeScript.",
+              "Arquitetura modular",
+              "FSD, separação por domínio, escalabilidade desde o início, DDD ",
             ],
             [
-              "Dev Mobile",
-              "Desenvolvimento de aplicativos para iOS e Android usando tecnologias Flutter(estudando), React Native.",
+              "UI/UX com interatividade",
+              "Interfaces animadas, fluidas e com foco na experiência real.",
             ],
             [
-              "Dev Desktop",
-              "Desenvolvimento de aplicações desktop usando tecnologias como Electron e .NET.",
+              "Deploy & Infra",
+              "Blue/green deployment, load balancer, NGINX, zero downtime, docker",
+            ],
+            [
+              "Integrações & Automações",
+              "APIs REST, webhooks, MCP e pipelines de CI/CD",
             ],
           ].map(([title, description]) => (
             <div key={title} className="border border-gray-200/20 p-6">
               <article className="">
                 <h2 className="text-lg font-semibold">{title}</h2>
-                <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-slate-300">
+                <p className="mt-2 text-sm leading-6 text-gray-400 dark:text-slate-300">
                   {description}
                 </p>
               </article>

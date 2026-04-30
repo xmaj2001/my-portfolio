@@ -1,10 +1,14 @@
 "use client";
 
-import { FeatureCard } from "@/components/blocks/grid-feature-cards";
+import {
+  FeatureCard,
+  RepoGridCard,
+} from "@/modules/repository/components/grid-repo-cards";
 import { Navigation } from "@/components/landing/navigation";
 import ShapeGrid from "@/components/ShapeGrid";
 import { useRepos } from "@/modules/repository/hooks/useGitHub";
 import { useRef, useState } from "react";
+import { RepoCard } from "@/modules/repository/components/RepoCard";
 
 export default function RepositoryPage() {
   const [search, setSearch] = useState("");
@@ -107,7 +111,7 @@ export default function RepositoryPage() {
 
             <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-5">
               {repos.map((repo) => (
-                <FeatureCard key={repo.id} repo={repo} />
+                <RepoGridCard key={repo.id} repo={repo} />
               ))}
             </div>
           </>

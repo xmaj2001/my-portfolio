@@ -1,7 +1,9 @@
 import { Hero } from "@/components/hero";
 import { Navigation } from "@/components/landing/navigation";
 import ShapeGrid from "@/components/ShapeGrid";
-import { Experience } from "@/modules/about/components/experience";
+import { Separator } from "@/components/ui/separator";
+import { Expertise } from "@/modules/about/components/expertise";
+import { StackAndTools } from "@/modules/about/components/StackAndTools";
 
 export default function Home() {
   return (
@@ -20,12 +22,11 @@ export default function Home() {
       <Navigation />
       <div className="flex flex-col gap-10">
         <Hero />
-        <div className="space-y-8">
-          <h2 className="text-3xl font-bold tracking-tight text-center">
-            Experiência
-          </h2>
-          <Experience />
-        </div>
+        <Separator />
+        <StackAndTools />
+        <Separator />
+        <Expertise />
+        <Separator />
       </div>
     </main>
   );
