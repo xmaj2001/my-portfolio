@@ -1,5 +1,8 @@
+import { ContainerAnimated } from "@/components/blocks/animated-gallery";
+import DomeGallery from "@/components/DomeGallery";
 import { Hero } from "@/components/hero";
 import { Navigation } from "@/components/landing/navigation";
+import { RepoGallery } from "@/components/landing/repo-gallery";
 import ShapeGrid from "@/components/ShapeGrid";
 import { Separator } from "@/components/ui/separator";
 import { Expertise } from "@/modules/about/components/expertise";
@@ -27,6 +30,9 @@ export default function Home() {
         <Separator />
         <Expertise />
         <Separator />
+        <div className="flex flex-col items-center gap-4">
+          <RepoGallery />
+        </div>
       </div>
     </main>
   );
